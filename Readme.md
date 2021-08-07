@@ -1,7 +1,7 @@
 # Личный проект «Readme»
 
-* Студент: [Дмитрий Плотников](https://up.htmlacademy.ru/php/12/user/547261).
-* Наставник: `Неизвестно`.
+- Студент: [Дмитрий Плотников](https://up.htmlacademy.ru/php/12/user/547261).
+- Наставник: [Максим Деев](https://htmlacademy.ru/profile/id685777).
 
 ---
 

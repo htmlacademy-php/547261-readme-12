@@ -15,7 +15,7 @@ $posts = [
 	[
 		'title' => 'Игра престолов',
 		'type' => 'post-text',
-		'content' => 'Не могу дождаться начала финального сезона своего любимого сериала!',
+		'content' => 'Не могу дождаться начала финального сезона своего любимого сериала! ',
 		'name' => 'Владик',
 		'avatar' => 'userpic.jpg'
 
@@ -43,7 +43,28 @@ $posts = [
 		'name' => 'Владик',
 		'avatar' => 'userpic.jpg'
 	]
-]
+];
+
+
+function cropText($text, $maxTextLength)
+{
+	$text = explode(' ', $text);
+	$lengthText = 0;
+	$result = [];
+	$readMore = null;
+
+	foreach ($text as $word) {
+		$lengthText += strlen($word);
+		$result[] = $word;
+		if ($lengthText > $maxTextLength) {
+			$readMore = '... </p> <p> <a class="post-text__more-link" href="#">Читать далее</a>';
+			break;
+		}
+	}
+	return implode(' ', $result) . $readMore;
+};
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -364,7 +385,7 @@ $posts = [
 								<!--содержимое для поста-текста-->
 
 								<p>
-									<?= $post['content'];  ?>
+									<?= cropText($post['content'], 300);  ?>
 								</p>
 
 							<? endif;  ?>

@@ -86,7 +86,7 @@
 	<div class="popular__posts">
 
 
-		<? foreach ($posts as $post) : ?>
+		<? foreach ($posts as $key => $post) : ?>
 			<article class="popular__post post 	<?= $post['type'];  ?>">
 				<header class="post__header">
 					<h2>
@@ -150,7 +150,12 @@
 								<b class="post__author-name">
 									<?= strip_tags($post['name']);  ?>
 								</b>
-								<time class="post__time" datetime="">дата</time>
+								<? $date = generate_random_date($key);
+
+								?>
+
+								<time class="post__time" datetime="<?= $date ?>" title="<?= date_format(date_create($date), 'd.m.Y H:i') ?>"> <?= сalculate_elapsed_time($date);  ?></time>
+
 							</div>
 						</a>
 					</div>

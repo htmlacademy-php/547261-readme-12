@@ -67,6 +67,38 @@ function cropText($text, $maxTextLength)
 	return implode(' ', $result) . $readMore;
 };
 
+function сalculate_elapsed_time($date)
+{
+	$time_now = date_create('now');
+	$time_post =  date_create($date);
+	$diff = date_diff($time_post, $time_now);
+	$minutes = $diff->format('%i');
+	$hours = $diff->format('%h');
+	$days = $diff->format('%d');
+	$months = $diff->format('%m');
+	$weeks = floor($days / 7);
+
+
+	$minutes_plural_form = get_noun_plural_form($minutes, "минута", "минуты", "минут");
+	$hours_plural_form = get_noun_plural_form($hours, "час", "часа", "часов");
+	$days_plural_form = get_noun_plural_form($days, "день", "дня", "дней");
+	$weeks_plural_form = get_noun_plural_form($weeks, "неделя", "недели", "недель");
+	$months_plural_form = get_noun_plural_form($months, "месяц", "месяца", "месяцев");
+
+	if ($months) {
+		return "$months $months_plural_form назад";
+	} elseif ($weeks) {
+		return "$weeks $weeks_plural_form назад";
+	} elseif ($days) {
+		return "$days $days_plural_form назад";
+	} elseif ($hours) {
+		return "$hours $hours_plural_form назад";
+	} else {
+		return "$minutes $minutes_plural_form назад";
+	}
+}
+
+
 
 $page_content = include_template('main.php', ['posts' => $posts]);
 $layout_content = include_template('layout.php', ['content' => $page_content, 'user_name' => $user_name, 'title' => $title]);
